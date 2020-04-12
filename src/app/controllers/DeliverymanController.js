@@ -54,7 +54,7 @@ class DeliverymanController {
 
   async update(req, res) {
     const { id } = req.params;
-    const { name, email, avatar_id } = req.body;
+    const { email, avatar_id } = req.body;
 
     const schema = Yup.object().shape({
       name: Yup.string(),
