@@ -91,16 +91,6 @@ class RecipientController {
       return res.status(400).json({ error: "User doesn't exists." });
     }
 
-    // const {
-    //   name,
-    //   street,
-    //   number,
-    //   complement,
-    //   state,
-    //   city,
-    //   zipcode,
-    // } = await Recipient.update(req.body, {where {id}});
-
     const recipientUpdated = await recipient.update(req.body);
 
     return res.json(recipientUpdated);
