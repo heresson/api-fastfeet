@@ -1,24 +1,22 @@
-import bcrypt from 'bcryptjs';
 import Sequelize, { Model } from 'sequelize';
 
-class User extends Model {
+class Deliveryman extends Model {
   static init(sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
-        password_hash: Sequelize.STRING,
       },
       {
         sequelize,
+        tableName: 'deliverymen',
       }
     );
     return this;
   }
 
-  checkPassword(password) {
-    return bcrypt.compare(password, this.password_hash);
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 }
-
-export default User;
+export default Deliveryman;
