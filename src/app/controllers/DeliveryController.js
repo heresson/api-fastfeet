@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+import Mail from '../../lib/Mail';
+
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
 import Recipient from '../models/Recipient';
@@ -38,6 +40,22 @@ class DeliveryController {
     }
 
     const delivery = await Delivery.create(req.body);
+
+    const fullAddress = `${recipientExists.street}, ${recipientExists.number}. complemento: ${recipientExists.complement}. ${recipientExists.city}/${recipientExists.state} - CEP: ${recipientExists.zipcode}`;
+
+    // envio de email
+    await Mail.sendMail({
+      to: `${deliverymanExists.name}<${deliverymanExists.email}>`,
+      subject: 'Nova entrega para voce',
+      template: 'newDelivery',
+      context: {
+        deliveryman: deliverymanExists.name,
+        product: delivery.product,
+        recipient: recipientExists.name,
+        fullAddress,
+      },
+    });
+
     return res.json(delivery);
   }
 

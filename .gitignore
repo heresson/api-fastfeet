@@ -1,2 +1,14 @@
 node_modules
 .env
+node_modules/.yarn-integrity
+node_modules/commander/CHANGELOG.md
+node_modules/commander/index.js
+node_modules/commander/package.json
+node_modules/commander/Readme.md
+node_modules/commander/typings/index.d.ts
+node_modules/editorconfig/node_modules/commander/CHANGELOG.md
+node_modules/editorconfig/node_modules/commander/index.js
+node_modules/editorconfig/node_modules/commander/LICENSE
+node_modules/editorconfig/node_modules/commander/package.json
+node_modules/editorconfig/node_modules/commander/Readme.md
+node_modules/editorconfig/node_modules/commander/typings/index.d.ts
