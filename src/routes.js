@@ -8,7 +8,8 @@ import RecipientController from './app/controllers/RecipientController';
 import FileController from './app/controllers/FileController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import DeliveryController from './app/controllers/DeliveryController';
-// import MyDeliveriesController from './app/controllers/MyDeliveriesController';
+import MyDeliveriesController from './app/controllers/MyDeliveriesController';
+import MyDeliveredController from './app/controllers/MyDeliveredController';
 
 const routes = new Router();
 
@@ -18,6 +19,8 @@ routes.get('/', (req, res) => {
   return res.json({ hello: 'world' });
 });
 
+routes.get('/deliveryman/:id/deliveries', MyDeliveriesController.index);
+routes.get('/deliveryman/:id/delivered', MyDeliveredController.index);
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
@@ -41,7 +44,5 @@ routes.get('/deliveries/:id', DeliveryController.show);
 routes.post('/deliveries', DeliveryController.store);
 routes.put('/deliveries/:id', DeliveryController.update);
 routes.delete('/deliveries/:id', DeliveryController.delete);
-
-// routes.get('deliveryman/:id/deliveries', MyDeliveriesController.index);
 
 export default routes;

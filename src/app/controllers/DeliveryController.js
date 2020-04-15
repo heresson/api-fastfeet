@@ -6,6 +6,7 @@ import NewDelivery from '../jobs/NewDelivery';
 import Delivery from '../models/Delivery';
 import Deliveryman from '../models/Deliveryman';
 import Recipient from '../models/Recipient';
+import File from '../models/File';
 
 class DeliveryController {
   async index(req, res) {
@@ -123,7 +124,7 @@ class DeliveryController {
 
   async update(req, res) {
     const { id } = req.params;
-    const { deliveryman_id, recipient_id } = req.body;
+    const { deliveryman_id, recipient_id, signature_id } = req.body;
 
     const schema = Yup.object().shape({
       product: Yup.string(),
@@ -154,6 +155,14 @@ class DeliveryController {
       });
       if (!deliverymanExists) {
         return res.status(400).json({ error: 'Invalid deliveryman_id' });
+      }
+    }
+
+    // check if signature_id is valid
+    if (signature_id) {
+      const signatureExists = await File.findByPk(signature_id);
+      if (!signatureExists) {
+        return res.status(400).json({ error: 'Invalid signature_id' });
       }
     }
 

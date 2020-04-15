@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Delivery from '../models/Delivery';
 import Recipient from '../models/Recipient';
 import File from '../models/File';
@@ -10,7 +11,7 @@ class MyDeliveriesController {
       where: {
         deliveryman_id,
         canceled_at: null,
-        signature_id: null,
+        signature_id: { [Op.not]: null },
       },
       attributes: [
         'id',
