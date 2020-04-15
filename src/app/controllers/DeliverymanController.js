@@ -5,7 +5,15 @@ import File from '../models/File';
 
 class DeliverymanController {
   async index(req, res) {
-    const deliverymen = await Deliveryman.findAll();
+    const deliverymen = await Deliveryman.findAll({
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['name', 'path', 'url'],
+        },
+      ],
+    });
     return res.json(deliverymen);
   }
 
@@ -44,7 +52,15 @@ class DeliverymanController {
 
   async show(req, res) {
     const { id } = req.params;
-    const deliveryman = await Deliveryman.findByPk(id);
+    const deliveryman = await Deliveryman.findByPk(id, {
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['name', 'path', 'url'],
+        },
+      ],
+    });
 
     if (!deliveryman) {
       return res.status(400).json({ error: "Deliveryman does't exist." });

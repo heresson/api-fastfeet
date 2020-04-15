@@ -8,6 +8,7 @@ import RecipientController from './app/controllers/RecipientController';
 import FileController from './app/controllers/FileController';
 import DeliverymanController from './app/controllers/DeliverymanController';
 import DeliveryController from './app/controllers/DeliveryController';
+// import MyDeliveriesController from './app/controllers/MyDeliveriesController';
 
 const routes = new Router();
 
@@ -40,5 +41,7 @@ routes.get('/deliveries/:id', DeliveryController.show);
 routes.post('/deliveries', DeliveryController.store);
 routes.put('/deliveries/:id', DeliveryController.update);
 routes.delete('/deliveries/:id', DeliveryController.delete);
+
+// routes.get('deliveryman/:id/deliveries', MyDeliveriesController.index);
 
 export default routes;

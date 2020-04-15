@@ -11,6 +11,12 @@ class Recipient extends Model {
         state: Sequelize.STRING,
         city: Sequelize.STRING,
         zipcode: Sequelize.STRING,
+        fullAddress: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return `${this.street}, ${this.number} (complemento: ${this.complement}). ${this.city}/${this.state} - ${this.zipcode}`;
+          },
+        },
       },
       {
         sequelize,
