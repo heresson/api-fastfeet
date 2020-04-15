@@ -10,6 +10,7 @@ import DeliverymanController from './app/controllers/DeliverymanController';
 import DeliveryController from './app/controllers/DeliveryController';
 import MyDeliveriesController from './app/controllers/MyDeliveriesController';
 import MyDeliveredController from './app/controllers/MyDeliveredController';
+import WithdrawDeliveryController from './app/controllers/WithdrawDeliveryController';
 
 const routes = new Router();
 
@@ -18,10 +19,14 @@ const upload = multer(multerConfig);
 routes.get('/', (req, res) => {
   return res.json({ hello: 'world' });
 });
+routes.post('/sessions', SessionController.store);
 
 routes.get('/deliveryman/:id/deliveries', MyDeliveriesController.index);
 routes.get('/deliveryman/:id/delivered', MyDeliveredController.index);
-routes.post('/sessions', SessionController.store);
+routes.put(
+  '/deliveryman/:deliverymanId/withdraw/:deliveryId',
+  WithdrawDeliveryController.update
+);
 
 routes.use(authMiddleware);
 
