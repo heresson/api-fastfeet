@@ -19,7 +19,6 @@ class WithdrawDeliveryController {
 
     const schema = Yup.object().shape({
       start_date: Yup.date(),
-      end_date: Yup.date(),
     });
 
     if (!(await schema.isValid(req.body))) {

@@ -11,6 +11,7 @@ import DeliveryController from './app/controllers/DeliveryController';
 import MyDeliveriesController from './app/controllers/MyDeliveriesController';
 import MyDeliveredController from './app/controllers/MyDeliveredController';
 import WithdrawDeliveryController from './app/controllers/WithdrawDeliveryController';
+import FinishDeliveryController from './app/controllers/FinishDeliveryController';
 
 const routes = new Router();
 
@@ -26,6 +27,10 @@ routes.get('/deliveryman/:id/delivered', MyDeliveredController.index);
 routes.put(
   '/deliveryman/:deliverymanId/withdraw/:deliveryId',
   WithdrawDeliveryController.update
+);
+routes.put(
+  '/deliveryman/:deliverymanId/finish/:deliveryId',
+  FinishDeliveryController.update
 );
 
 routes.use(authMiddleware);
